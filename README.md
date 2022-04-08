@@ -21,10 +21,10 @@ cp .env.example .env
         DB_PASSWORD=
 	 ```
 jalankan perintah artisan
-    ```php
+```php
     php artisan generate-key
     php artisan migrate --seed
-    ```
+```
  - [x] jalankan server
  ```php artisan serve```
  buka alamat ```localhost:8000``` di browser
