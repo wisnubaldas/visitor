@@ -2,9 +2,10 @@
 
  ### Install 
  - [x] clone repo dari git
- 
-    ```bash git clone https://github.com/wisnubaldas/visitor.git```
-    ```bash cd visitor```
+```bash
+git clone https://github.com/wisnubaldas/visitor.git
+cd visitor
+```
  - [x] instal paket dependensi laravel
 		 ```composer install```
 		 ```cp .env.example .env```
