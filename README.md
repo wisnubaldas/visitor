@@ -2,15 +2,15 @@
 
  ### Install 
  - [x] clone repo dari git
-```bash
-git clone https://github.com/wisnubaldas/visitor.git
-cd visitor
-```
+    ```bash
+    git clone https://github.com/wisnubaldas/visitor.git
+    cd visitor
+    ```
  - [x] instal paket dependensi laravel
-```bash 
-composer install
-cp .env.example .env
-```
+    ```bash 
+    composer install
+    cp .env.example .env
+    ```
  - [x] konfigurasi koneksi database pada file .env
 	 ```bash
         DB_CONNECTION=mysql
