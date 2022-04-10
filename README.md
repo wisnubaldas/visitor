@@ -28,3 +28,16 @@
  - [x] jalankan server
  ```php artisan serve```
  buka alamat ```localhost:8000``` di browser
+
+ ### API
+ #### Pintu masuk
+ - end point ``` /api/pintu-masuk ```
+ - method ```POST```
+ - form data
+|param|tipe  |
+|--|--|
+|id_alat|string  |
+|pintu_masuk|bolean  |
+ - keterangan
+ > nilai pintu masuk 1 dan 0, jika parameter nilai pintu masuk 1 nilai akan 
+ > di reset menjadi 0 oleh sensor pintu masuk

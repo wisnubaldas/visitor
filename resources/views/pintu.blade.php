@@ -23,7 +23,7 @@
                         <div class="card-footer row">
                             <div class="col-12 col-sm-12">
                                 <h6>Total Masuk</h6>
-                                <h3 class="counter">{{$out['jml_in']}}</h3>
+                                <h3 class="counter" id="jml_in">{{$out['jml_in']}}</h3>
                             </div>
                         </div>
                     </div>
@@ -34,9 +34,8 @@
                         <div class="cal-date-widget card-body">
                             <div class="cal-info text-center">
                                 <div>
-                                    <h2>{{$ruang->jml}}</h2>
-                                    <div class="d-inline-block"><span class="b-r-dark pe-3">{{$ruang->jml}}</span><span class="ps-3">{{$ruang->limit}}</span></div>
-                                    <p class="f-16">Jumlah pengunjung dalam ruangan per kapasitas ruangan</p>
+                                    <h2 id="jml_ruang">{{$ruang->jml}}</h2>
+                                    <p class="f-16">Jumlah pengunjung dalam ruangan per {{$ruang->limit}} kapasitas ruangan</p>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +61,48 @@
         </div>
 
     @push('scripts')
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script>
+        let a = {
+            jml_in:document.getElementById('jml_in').innerText,
+            parseUrl:function(){
+                const queryString = window.location.pathname;
+                let query = queryString.split("/")[2].split("&")
+                let o = {}
+                query.map(function(a){
+                    x = a.split("=");
+                    return o[x[0]] = x[1]
+                })
+                return o
+            },
+            pintuMasuk:function(a){
+                const u = this.parseUrl()
+                if(u.masuk == a.message.id_alat && a.message.pintu_masuk == 1)
+                {
+                    this.jml_in = parseInt(this.jml_in)+1
+                    document.getElementById('jml_in').innerText = this.jml_in
+                     
+                    // console.log(u.jml_in)
+                    // console.log(a.message.id_alat)
+                }
+            }
+        }
 
+        // const z = a.parseUrl()
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = false;
+        var pusher = new Pusher('70bd4866deff0bd7280d', {
+                cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('my-channel');
+            channel.bind('my-event', function(data) {
+                // alert(JSON.stringify(data));
+                // console.log(data)
+                a.pintuMasuk(data)
+            });
+        
+    </script>
     @endpush
 
 @endsection

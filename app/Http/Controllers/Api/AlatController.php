@@ -8,10 +8,13 @@ use App\Models\PintuMasuk;
 use App\Models\PintuKeluar;
 use App\Models\KapasitasRuang;
 use App\Models\Alaram;
+use App\Events\MasukKeluar;
+
 class AlatController extends Controller
 {
     public function pintu_masuk(Request $request)
     {
+        // sebelom masuk cek orang dalem ruangan
         $this->cek_ruangan();
         
         $validated = $request->validate([
@@ -20,6 +23,8 @@ class AlatController extends Controller
         ]);
         if($validated)
         {
+            event(new MasukKeluar($request->all()));
+
             $pm = PintuMasuk::firstOrNew(array('id_alat' => $request->id_alat));
             $pm->pintu_masuk = $request->pintu_masuk;
             $pm->save();

@@ -32,22 +32,26 @@ class DashboardController extends Controller
     }
     private function collect_data_pintu()
     {
-        $idP_in = PintuMasuk::all()->pluck('id_alat');
-        $idP_out = PintuKeluar::all()->pluck('id_alat')->combine($idP_in)->toArray();
+        $idP_out =PintuMasuk::all()->transform(function ($item, $key) {
+            $pk = PintuKeluar::find($key);
+            if(!$pk){
+                return [
+                    'i'=>$item->id_alat,
+                    'o'=>'PK'.substr($item->id_alat,2)
+                    ];
+            }else{
+                return [
+                    'i'=>$item->id_alat, 
+                    'o'=>$pk->id_alat];
+            }
+        })->toArray();
+
        $data = [];
-        foreach ($idP_out as $o =>$i) {
-           if(isset($o))
-           {
-               // pintu keluar
-               $keluar = $o;
-               $jml_out = Ruangan::where('id_alat',$o)->count();
-           }
-           if(isset($i))
-           {
-               // pintu masuk
-               $masuk = $i;
-               $jml_in = Ruangan::where('id_alat',$i)->count();
-           }
+        foreach ($idP_out as $z) {
+            $keluar = $z['o'];
+            $jml_out = Ruangan::where('id_alat',$z['o'])->count();
+            $masuk = $z['i'];
+            $jml_in = Ruangan::where('id_alat',$z['i'])->count();
            $class = $this->random_class();
            $bg = $class[0]; $btn = $class[1];
            $x = compact('masuk','jml_in','keluar','jml_out','bg','btn');
