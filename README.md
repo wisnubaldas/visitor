@@ -46,6 +46,8 @@
  - method ```POST```
  - form data
 
+   |param|type|
+   |--|--|
    |id_alat|string  |
    |pintu_keluar|bolean (1,0) |
  - keterangan
