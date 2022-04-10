@@ -35,10 +35,19 @@
  - method ```POST```
  - form data
 
-   |param|tipe  |
-   |--|--|
    |id_alat|string  |
-   |pintu_masuk|bolean  |
+   |pintu_masuk|bolean (1,0) |
  - keterangan
    > nilai pintu masuk 1 dan 0, jika parameter nilai pintu masuk 1 nilai akan 
    > di reset menjadi 0 oleh sensor pintu masuk
+
+#### Pintu keluar
+ - end point ``` /api/pintu-keluar ```
+ - method ```POST```
+ - form data
+
+   |id_alat|string  |
+   |pintu_keluar|bolean (1,0) |
+ - keterangan
+   > nilai pintu keluar 1 dan 0, jika parameter nilai pintu keluar 1 nilai akan 
+   > di reset menjadi 0 oleh sensor pintu keluar

@@ -44,6 +44,8 @@ class AlatController extends Controller
         ]);
         if($validated)
         {
+            event(new MasukKeluar($request->all()));
+
             $pm = PintuKeluar::firstOrNew(array('id_alat' => $request->id_alat));
             $pm->pintu_keluar = $request->pintu_keluar;
             $pm->save();

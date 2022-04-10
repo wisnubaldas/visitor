@@ -42,7 +42,8 @@ class DashboardController extends Controller
             }else{
                 return [
                     'i'=>$item->id_alat, 
-                    'o'=>$pk->id_alat];
+                    'o'=>$pk->id_alat
+                ];
             }
         })->toArray();
 

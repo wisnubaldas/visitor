@@ -52,7 +52,7 @@
                         <div class="card-footer row">
                             <div class="col-12 col-sm-12">
                                 <h6>Total Keluar</h6>
-                                <h3 class="counter">{{$out['jml_out']}}</h3>
+                                <h3 class="counter" id="jml_out">{{$out['jml_out']}}</h3>
                             </div>
                         </div>
                     </div>
@@ -65,6 +65,8 @@
     <script>
         let a = {
             jml_in:document.getElementById('jml_in').innerText,
+            jml_ruang:document.getElementById('jml_ruang').innerText,
+            jml_out:document.getElementById('jml_out').innerText,
             parseUrl:function(){
                 const queryString = window.location.pathname;
                 let query = queryString.split("/")[2].split("&")
@@ -80,15 +82,22 @@
                 if(u.masuk == a.message.id_alat && a.message.pintu_masuk == 1)
                 {
                     this.jml_in = parseInt(this.jml_in)+1
+                    this.jml_ruang = parseInt(this.jml_ruang)+1
                     document.getElementById('jml_in').innerText = this.jml_in
-                     
-                    // console.log(u.jml_in)
-                    // console.log(a.message.id_alat)
+                    document.getElementById('jml_ruang').innerText = this.jml_ruang
+                }
+            },
+            pintuKeluar:function(a){
+                const u = this.parseUrl()
+                if(u.keluar == a.message.id_alat && a.message.pintu_keluar == 1)
+                {
+                    this.jml_out = parseInt(this.jml_out)+1
+                    this.jml_ruang = parseInt(this.jml_ruang)-1
+                    document.getElementById('jml_out').innerText = this.jml_out
+                    document.getElementById('jml_ruang').innerText = this.jml_ruang
                 }
             }
         }
-
-        // const z = a.parseUrl()
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = false;
         var pusher = new Pusher('70bd4866deff0bd7280d', {
@@ -100,6 +109,7 @@
                 // alert(JSON.stringify(data));
                 // console.log(data)
                 a.pintuMasuk(data)
+                a.pintuKeluar(data)
             });
         
     </script>
