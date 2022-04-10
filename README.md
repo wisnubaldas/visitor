@@ -34,6 +34,7 @@
  - end point ``` /api/pintu-masuk ```
  - method ```POST```
  - form data
+ 
 |param|tipe  |
 |--|--|
 |id_alat|string  |
