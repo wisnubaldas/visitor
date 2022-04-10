@@ -30,6 +30,7 @@
  buka alamat ```localhost:8000``` di browser
 
  ### API
+ > Api akan digunakan oleh sensor sesuai tipe pintu
  #### Pintu masuk
  - end point ``` /api/pintu-masuk ```
  - method ```POST```
