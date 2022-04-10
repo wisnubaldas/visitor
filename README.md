@@ -51,3 +51,6 @@
  - keterangan
    > nilai pintu keluar 1 dan 0, jika parameter nilai pintu keluar 1 nilai akan 
    > di reset menjadi 0 oleh sensor pintu keluar
+
+![dashboard](/screen/dashboard.png)
+![dashboard](/screen/detail.png)
