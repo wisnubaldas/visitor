@@ -34,7 +34,9 @@
  - end point ``` /api/pintu-masuk ```
  - method ```POST```
  - form data
-
+   
+   |param|type|
+   |--|--|
    |id_alat|string  |
    |pintu_masuk|bolean (1,0) |
  - keterangan
